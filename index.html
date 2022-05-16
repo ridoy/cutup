@@ -1,0 +1,51 @@
+<html>
+    <style>
+        #text, #submit, #output {
+            display: block;
+            margin: 0 auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        #output {
+            white-space: pre-line;
+            width: 500px;
+        }
+    </style>
+    <body>
+        <h2 align="center">Text Randomizer v0.1</h2>
+        <textarea placeholder="Enter anything here and click Randomize." cols=100 rows=20 id="text"></textarea>
+        <button id="submit">Randomize!</button>
+        <p id="output"></p>
+    </body>
+    <script>
+        const numShuffles = 1000;
+        const inputElementId = "text";
+        const submitButtonId  = "submit";
+        const outputElementId = "output";
+
+        const inputElement = document.getElementById(inputElementId);
+        const submitButton = document.getElementById(submitButtonId);
+        const outputElement = document.getElementById(outputElementId);
+
+        submitButton.addEventListener("click", function() {
+                    let input = inputElement.value;
+                    outputElement.textContent = randomize(input);
+                });
+
+        function randomize(text) {
+            let randomized = "";
+            let splitText = text.split("\n");
+
+            for (let i = 0; i < numShuffles; i++) {
+                // Select two random indices, swap
+                let first = Math.floor(Math.random() * splitText.length);
+                let second = Math.floor(Math.random() * splitText.length);
+                let temp = splitText[first];
+                splitText[first] = splitText[second];
+                splitText[second] = temp;;
+            }
+
+            return splitText.join('\n');
+        }
+    </script>
+</html>
