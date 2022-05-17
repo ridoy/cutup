@@ -5,3 +5,12 @@ For writing song lyrics. Open index.html in a browser. Input lyrics, poetry, new
 Often the program will output an interesting rearrangement that is more stimulating than your original text. If not, sometimes nonsense triggers free-association and helps you come up with more ideas.
 
 It could be argued that all language is just cutting up words and rearranging them. David Bowie used this method to trigger fresh ideas and search his imagination. Now, you can use it too. 
+
+# Feature ideas
+
+- [ ] Setting for shuffle granularity (by word, by line, by every n lines)
+- [ ] Highlight + save lines from shuffled output for later
+- [ ] Show and compare multiple shuffles at once
+- [ ] Show shuffle "fragments" (2-4 lines) in rapid succession, like/dislike button for fast evaluation, save liked subsets for later
+- [ ] Export to .txt
+- [ ] Format output in common song formats, e.g. 4 line verses, 2 line choruses
