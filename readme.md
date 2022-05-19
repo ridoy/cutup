@@ -14,3 +14,6 @@ It could be argued that all language is just cutting up words and rearranging th
 - [ ] Show shuffle "fragments" (2-4 lines) in rapid succession, like/dislike button for fast evaluation, save liked subsets for later
 - [ ] Export to .txt
 - [ ] Format output in common song formats, e.g. 4 line verses, 2 line choruses
+- [ ] Save shuffle history in browser storage
+- [ ] Pair lines that happen to rhyme. Use input history.
+- [ ] Have example inputs ready for first time users
