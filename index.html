@@ -1,4 +1,7 @@
 <html>
+    <head>
+        <title>Cut Up v0.1</title>
+    </head>
     <style>
         #text, #submit, #output {
             display: block;
@@ -18,10 +21,22 @@
             text-align: center;
         }
 
+        #header {
+            text-align: center;
+        }
+
 
     </style>
     <body>
-        <h2 align="center">Text Randomizer v0.1</h2>
+        <div id="header">
+            <h2>Cut Up v0.1</h2>
+            <p>
+                <a href="https://www.openculture.com/2019/05/how-david-bowie-used-william-s-burroughs-cut-up-method-to-write-his-unforgettable-lyrics.html">About the Cut Up Method used by David Bowie and others</a>
+            </p>
+            <p>
+            <a href="https://github.com/ridoy/cutup">Github</a>
+            </p>
+        </div>
         <textarea placeholder="Enter anything here and click Randomize." cols=100 rows=20 id="text"></textarea>
         <div id="settings">
             <label><input id="remove-empty-lines" type="checkbox" checked> Remove empty lines?</label>
@@ -41,7 +56,7 @@
         const removeEmptyCheckbox = document.getElementById(removeEmptyCheckboxId);
 
         let removeEmptyLines = true;
-        let numShuffles = 1000;
+        let numShuffles = 10000;
 
         submitButton.addEventListener("click", () => {
                     let input = inputElement.value;
