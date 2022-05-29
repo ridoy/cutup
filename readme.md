@@ -6,8 +6,13 @@ Often the program will output an interesting rearrangement that is more stimulat
 
 It could be argued that all language is just cutting up words and rearranging them. David Bowie used this method to trigger fresh ideas and search his imagination. Now, you can use it too. 
 
+# Other
+
+I kind of like how plain and HTML 1.0 it all looks. Therefore, don't be surprised if I keep it that way.
+
 # Feature ideas
 
+- [x] Set scramble amount
 - [ ] Setting for shuffle granularity (by word, by line, by every n lines)
 - [ ] Highlight + save lines from shuffled output for later
 - [ ] Show and compare multiple shuffles at once
@@ -17,3 +22,4 @@ It could be argued that all language is just cutting up words and rearranging th
 - [ ] Save shuffle history in browser storage
 - [ ] Pair lines that happen to rhyme. Use input history.
 - [ ] Have example inputs ready for first time users
+- [ ] Mobile responsiveness
