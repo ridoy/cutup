@@ -1,23 +1,23 @@
 const inputElementId = "text";
 const submitButtonId  = "submit";
-const outputElementId = "output";
+const outputTextElementId = "output-text";
 const removeEmptyCheckboxId = "remove-empty-lines";
 const numShufflesInputId = "set-num-shuffles";
-const loadExampleButtonId = "button-load-example";
+const loadExampleInputButtonId = "button--load-example-input";
 
 const inputElement = document.getElementById(inputElementId);
 const submitButton = document.getElementById(submitButtonId);
-const outputElement = document.getElementById(outputElementId);
+const outputTextElement = document.getElementById(outputTextElementId);
 const removeEmptyCheckbox = document.getElementById(removeEmptyCheckboxId);
 const numShufflesInput = document.getElementById(numShufflesInputId);
-const loadExampleButton = document.getElementById(loadExampleButtonId);
+const loadExampleInputButton = document.getElementById(loadExampleInputButtonId);
 
 let removeEmptyLines = true;
 let numShuffles = 10000;
 
 submitButton.addEventListener("click", () => {
     let input = inputElement.value;
-    outputElement.textContent = shuffleByWord(input);
+    outputTextElement.textContent = shuffleByLine(input);
 });
 
 removeEmptyCheckbox.addEventListener("change", (e) => {
@@ -32,7 +32,7 @@ numShufflesInput.addEventListener("change", (e) => {
     }
 });
 
-loadExampleButton.addEventListener("click", (e) => {
+loadExampleInputButton.addEventListener("click", (e) => {
     loadExampleInput();
 });
 
@@ -42,8 +42,8 @@ const shuffleByLine = (text) => {
         lines = lines.filter((line) => line !== "");
     }
     for (let i = 0; i < numShuffles; i++) {
-        let first = Math.floor(Math.random() * lines.length);
-        let second = Math.floor(Math.random() * lines.length);
+        let first = pickRandomIndexFrom(lines);
+        let second = pickRandomIndexFrom(lines);
         let temp = lines[first];
         lines[first] = lines[second];
         lines[second] = temp;
@@ -51,6 +51,7 @@ const shuffleByLine = (text) => {
     return lines.join('\n');
 }
 
+// TODO Add option to switch between shuffleByWord and shuffleByLine on frontend
 // TODO fix capitalization
 // TODO Swap words that are the same parts of speech e.g. nouns with nouns
 const shuffleByWord = (text) => {
@@ -60,10 +61,10 @@ const shuffleByWord = (text) => {
     }
     let words = lines.map((line) => line.split(" "));
     for (let i = 0; i < numShuffles; i++) {
-        let firstLine = words[Math.floor(Math.random() * lines.length)];
-        let firstWordIndex = Math.floor(Math.random() * firstLine.length);
-        let secondLine = words[Math.floor(Math.random() * lines.length)];
-        let secondWordIndex = Math.floor(Math.random() * secondLine.length);
+        let firstLine = pickRandomFrom(words);
+        let firstWordIndex = pickRandomIndexFrom(firstLine);
+        let secondLine = pickRandomFrom(words);
+        let secondWordIndex = pickRandomIndexFrom(secondLine);
 
         let temp = firstLine[firstWordIndex];
         firstLine[firstWordIndex] = secondLine[secondWordIndex];
@@ -74,8 +75,22 @@ const shuffleByWord = (text) => {
 }
 
 const loadExampleInput = () => {
-    fetch('http://cratevst.com/cutup/all-star.txt')
+    const BASE_URL = "http://www.cratevst.com/cutup/"; // If CutUp is ever hosted elsewhere, this must match the new domain to avoid CORS errors
+    const FILES = [
+        "all-star.txt",
+        "desolation-row.txt",
+        "j-alfred-prufrock.txt"
+    ];
+    
+    fetch(BASE_URL + pickRandomFrom(FILES))
         .then(response => response.text())
-        .then(text => console.log(text));
+        .then(text => inputElement.value = text);
+}
 
+const pickRandomFrom = (arr) => {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+const pickRandomIndexFrom = (arr) => {
+    return Math.floor(Math.random() * arr.length);
 }

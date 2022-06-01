@@ -16,15 +16,35 @@
         </script>
     </head>
     <style>
+        body {
+            font-family: monospace;
+        }
+
+        button {
+            font-family: monospace;
+        }
+
         #text, #submit, #output {
             display: block;
             margin: 0 auto;
             margin-top: 20px;
             margin-bottom: 20px;
         }
+
+        textarea {
+            width: 800px;
+        }
+
         #output {
+            width: 800px;
+            min-height: 500px;
+            border: 1px dashed grey;
+        }
+
+        #output-text {
+            margin-block-start: 0;
             white-space: pre-line;
-            width: 500px;
+            padding: 10px;
         }
 
         #settings {
@@ -43,7 +63,14 @@
             text-align: center;
         }
 
+        .bold {
+            font-weight: 800;
+        }
 
+        .text--grey {
+            color: grey;
+        }
+            
     </style>
     <body>
         <div id="header">
@@ -52,17 +79,22 @@
                 <a href="https://www.openculture.com/2019/05/how-david-bowie-used-william-s-burroughs-cut-up-method-to-write-his-unforgettable-lyrics.html">About the Cut Up Method used by David Bowie and others</a>
             </p>
             <p>
-            <a href="https://github.com/ridoy/cutup">Github</a>
+                <a href="https://github.com/ridoy/cutup">Source code on GitHub</a>
             </p>
-            <button id="button-load-example">Load example input</button>
+            <button id="button--load-example-input">Confused? Click here to load example text</button>
         </div>
         <textarea placeholder="Enter anything here and click Randomize." cols=100 rows=20 id="text"></textarea>
         <div id="settings">
+            <p class="bold">Settings</p>
             <label><input id="remove-empty-lines" type="checkbox" checked> Remove empty lines?</label>
             <label><input id="set-num-shuffles" type="number" value="10000" min="10000" max="1000000"> Scramble amount</label>
         </div>
         <button id="submit">Randomize!</button>
-        <p id="output"></p>
+        <div id="output">
+            <p id="output-text">
+            <span class="text--grey">Your shuffled text will appear here.</span>
+            </p>
+        </div>
     </body>
     <script src="./cutup.js"></script>
 </html>

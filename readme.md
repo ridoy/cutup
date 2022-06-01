@@ -21,5 +21,5 @@ I kind of like how plain and HTML 1.0 it all looks. Therefore, don't be surprise
 - [ ] Format output in common song formats, e.g. 4 line verses, 2 line choruses
 - [ ] Save shuffle history in browser storage
 - [ ] Pair lines that happen to rhyme. Use input history.
-- [ ] Have example inputs ready for first time users
+- [x] Have example inputs ready for first time users
 - [ ] Mobile responsiveness
