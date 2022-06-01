@@ -3,12 +3,14 @@ const submitButtonId  = "submit";
 const outputElementId = "output";
 const removeEmptyCheckboxId = "remove-empty-lines";
 const numShufflesInputId = "set-num-shuffles";
+const loadExampleButtonId = "button-load-example";
 
 const inputElement = document.getElementById(inputElementId);
 const submitButton = document.getElementById(submitButtonId);
 const outputElement = document.getElementById(outputElementId);
 const removeEmptyCheckbox = document.getElementById(removeEmptyCheckboxId);
 const numShufflesInput = document.getElementById(numShufflesInputId);
+const loadExampleButton = document.getElementById(loadExampleButtonId);
 
 let removeEmptyLines = true;
 let numShuffles = 10000;
@@ -28,6 +30,10 @@ numShufflesInput.addEventListener("change", (e) => {
     } else {
         numShuffles = e.target.value;
     }
+});
+
+loadExampleButton.addEventListener("click", (e) => {
+    loadExampleInput();
 });
 
 const shuffleByLine = (text) => {
@@ -67,6 +73,9 @@ const shuffleByWord = (text) => {
     return lines.join('\n');
 }
 
-const loadExampleInput = () {
+const loadExampleInput = () => {
+    fetch('http://cratevst.com/cutup/all-star.txt')
+        .then(response => response.text())
+        .then(text => console.log(text));
 
 }
