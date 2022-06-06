@@ -54,9 +54,13 @@
             text-align: center;
         }
 
-        #settings > * {
+        #settings > label {
             display: block;
             margin-bottom: 10px;
+        }
+
+        #settings > label > input {
+            display: inline;
         }
 
         #header {
@@ -74,20 +78,28 @@
     </style>
     <body>
         <div id="header">
-            <h2>Cut Up v0.1</h2>
+            <h2>Cut Up v0.2</h2>
             <p>
                 <a href="https://www.openculture.com/2019/05/how-david-bowie-used-william-s-burroughs-cut-up-method-to-write-his-unforgettable-lyrics.html">About the Cut Up Method used by David Bowie and others</a>
             </p>
             <p>
                 <a href="https://github.com/ridoy/cutup">Source code on GitHub</a>
             </p>
-            <button id="button--load-example-input">Confused? Click here to load example text</button>
+            <button id="button--load-example-input">Confused? Click here to load example text. Then click "Randomize".</button>
         </div>
         <textarea placeholder="Enter anything here and click Randomize." cols=100 rows=20 id="text"></textarea>
         <div id="settings">
             <p class="bold">Settings</p>
-            <label><input id="remove-empty-lines" type="checkbox" checked> Remove empty lines?</label>
-            <label><input id="set-num-shuffles" type="number" value="10000" min="10000" max="1000000"> Scramble amount</label>
+            <label>
+                <input id="remove-empty-lines" type="checkbox" checked> Remove empty lines?
+            </label>
+            <label>
+                <input id="set-num-shuffles" type="number" value="10000" min="10000" max="1000000"> Shuffle amount
+            </label>
+            <label>Shuffle by: 
+                <input class="shuffle-by" type="radio" name="shuffle-by" value="line" checked> Line? 
+                <input class="shuffle-by" type="radio" name="shuffle-by" value="word"> Word?
+            </label>
         </div>
         <button id="submit">Randomize!</button>
         <div id="output">

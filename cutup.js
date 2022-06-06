@@ -4,6 +4,7 @@ const outputTextElementId = "output-text";
 const removeEmptyCheckboxId = "remove-empty-lines";
 const numShufflesInputId = "set-num-shuffles";
 const loadExampleInputButtonId = "button--load-example-input";
+const shuffleByToggleClassName = "shuffle-by"
 
 const inputElement = document.getElementById(inputElementId);
 const submitButton = document.getElementById(submitButtonId);
@@ -11,13 +12,20 @@ const outputTextElement = document.getElementById(outputTextElementId);
 const removeEmptyCheckbox = document.getElementById(removeEmptyCheckboxId);
 const numShufflesInput = document.getElementById(numShufflesInputId);
 const loadExampleInputButton = document.getElementById(loadExampleInputButtonId);
+const shuffleByToggle = document.getElementsByClassName(shuffleByToggleClassName);
 
+// User preferences
 let removeEmptyLines = true;
 let numShuffles = 10000;
+const shuffleModes = {
+    word: "BY_WORD",
+    line: "BY_LINE"
+};
+let shuffleBy = shuffleModes["line"];
 
 submitButton.addEventListener("click", () => {
     let input = inputElement.value;
-    outputTextElement.textContent = shuffleByLine(input);
+    outputTextElement.textContent = (shuffleBy == shuffleModes["word"]) ? shuffleByWord(input) : shuffleByLine(input);
 });
 
 removeEmptyCheckbox.addEventListener("change", (e) => {
@@ -35,6 +43,12 @@ numShufflesInput.addEventListener("change", (e) => {
 loadExampleInputButton.addEventListener("click", (e) => {
     loadExampleInput();
 });
+
+for (const radio of shuffleByToggle) {
+    radio.onclick = (e) => {
+        shuffleBy = shuffleModes[e.target.value] || shuffleModes["line"];
+    }
+}
 
 const shuffleByLine = (text) => {
     let lines = text.split("\n");
