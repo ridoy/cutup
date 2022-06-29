@@ -13,7 +13,7 @@ I kind of like how plain and HTML 1.0 it all looks. Therefore, don't be surprise
 # Feature ideas
 
 - [x] Set scramble amount
-- [ ] Setting for shuffle granularity (by word, by line, by every n lines)
+- [x] Setting for shuffle granularity (by word, by line, by every n lines)
 - [ ] Highlight + save lines from shuffled output for later
 - [ ] Show and compare multiple shuffles at once
 - [ ] Show shuffle "fragments" (2-4 lines) in rapid succession, like/dislike button for fast evaluation, save liked subsets for later
