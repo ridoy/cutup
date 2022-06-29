@@ -89,7 +89,7 @@ const shuffleByWord = (text) => {
 }
 
 const loadExampleInput = () => {
-    const BASE_URL = "http://www.cratevst.com/cutup/"; // If CutUp is ever hosted elsewhere, this must match the new domain to avoid CORS errors
+    const BASE_URL = "https://ridoy.github.io/cutup/"; // If CutUp is ever hosted elsewhere, this must match the new domain to avoid CORS errors
     const FILES = [
         "all-star.txt",
         "desolation-row.txt",
