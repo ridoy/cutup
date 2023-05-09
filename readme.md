@@ -25,3 +25,10 @@ I kind of like how plain and HTML 1.0 it all looks. Therefore, don't be surprise
 - [ ] Pair lines that happen to rhyme. Use input history.
 - [x] Have example inputs ready for first time users
 - [ ] Mobile responsiveness
+
+# changelog
+
+v0.3
+- Added better example lyric generation
+- Switched to two column layout, other UI edits
+- Shuffle by word by default
