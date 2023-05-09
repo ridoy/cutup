@@ -21,7 +21,7 @@ const shuffleModes = {
     word: "BY_WORD",
     line: "BY_LINE"
 };
-let shuffleBy = shuffleModes["line"];
+let shuffleBy = shuffleModes["word"];
 
 submitButton.addEventListener("click", () => {
     let input = inputElement.value;
@@ -65,8 +65,6 @@ const shuffleByLine = (text) => {
     return lines.join('\n');
 }
 
-// TODO Add option to switch between shuffleByWord and shuffleByLine on frontend
-// TODO fix capitalization
 // TODO Swap words that are the same parts of speech e.g. nouns with nouns
 const shuffleByWord = (text) => {
     let lines = text.split("\n");
@@ -89,17 +87,34 @@ const shuffleByWord = (text) => {
 }
 
 const loadExampleInput = () => {
-    const BASE_URL = "https://ridoy.github.io/cutup/"; // If CutUp is ever hosted elsewhere, this must match the new domain to avoid CORS errors
-    const FILES = [
-        "all-star.txt",
-        "desolation-row.txt",
-        "j-alfred-prufrock.txt"
-    ];
-    
-    fetch(BASE_URL + pickRandomFrom(FILES))
-        .then(response => response.text())
-        .then(text => inputElement.value = text);
+    if (lyricsLibrary.length === 0) return;
+    let exampleText = '';
+    for (let i = 0; i < 50; i++) {
+        const randomIndex = Math.floor(Math.random(lyricsLibrary.length) * lyricsLibrary.length);
+        exampleText += lyricsLibrary[randomIndex] + "\n";
+    }
+    inputElement.value = exampleText;
 }
+
+let lyricsLibrary = [];
+(function loadLyricsLibrary() {
+    // If CutUp is ever hosted elsewhere, this must match the new domain to avoid CORS errors
+    const baseUrl = "https://ridoy.github.io/cutup/";
+    const urls = [
+        "lyrics/dylan.txt",
+        "lyrics/oasis.txt",
+        "lyrics/strokes.txt"
+    ].map(url => baseUrl + url);
+    Promise.all(urls.map(url => 
+        fetch(url).then(response => response.text())
+    )).then(texts => {
+        let uniqueLines = new Set();
+        texts.forEach(text => {
+            text.split("\n").map(line => uniqueLines.add(line.toLowerCase()));
+        });
+        lyricsLibrary = Array.from(uniqueLines);
+    });
+})();
 
 const pickRandomFrom = (arr) => {
     return arr[Math.floor(Math.random() * arr.length)];
