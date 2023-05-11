@@ -16,7 +16,7 @@ const shuffleByToggle = document.getElementsByClassName(shuffleByToggleClassName
 
 // User preferences
 let removeEmptyLines = true;
-let numShuffles = 10000;
+let numShuffles = 100;
 const shuffleModes = {
     word: "BY_WORD",
     line: "BY_LINE"
