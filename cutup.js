@@ -33,11 +33,7 @@ removeEmptyCheckbox.addEventListener("change", (e) => {
 });
 
 numShufflesInput.addEventListener("change", (e) => {
-    if (e.target.value > 1000000 ) { // For performance reasons
-        numShuffles = 1000000;
-    } else {
-        numShuffles = e.target.value;
-    }
+    numShuffles = (e.target.value > 1000000) ? 1000000 : e.target.value;
 });
 
 loadExampleInputButton.addEventListener("click", (e) => {
@@ -103,7 +99,8 @@ let lyricsLibrary = [];
     const urls = [
         "lyrics/dylan.txt",
         "lyrics/oasis.txt",
-        "lyrics/strokes.txt"
+        "lyrics/strokes.txt",
+        "lyrics/joni.txt"
     ].map(url => baseUrl + url);
     Promise.all(urls.map(url => 
         fetch(url).then(response => response.text())
